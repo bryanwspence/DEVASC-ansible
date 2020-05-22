@@ -1,0 +1,19 @@
+
+---
+- name: Write a configuration file
+  hosts: devenv
+  connection: local
+  tasks:
+    - name: "Create a new file"
+      file:
+        path: ~/src/DEVASC-ansible/hello
+        state: touch
+    - name: "Update file permissions"
+      file:
+        path: ~/src/DEVASC-ansible/hello
+        mode: 700
+    - name: "Update file content from template"
+      template:
+        src: ~/src/DEVASC-ansible/hello-template.j2
+        dest: ~/src/DEVASC-ansible/hello
+        mode: 0644
